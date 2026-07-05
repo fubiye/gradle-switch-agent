@@ -39,7 +39,7 @@ jar {
 
 shadowJar {
     archiveClassifier = null
-    relocate 'net.bytebuddy', 'relocated.gradleswitch.bytebuddy'
+    relocate 'net.bytebuddy', 'gsa.bytebuddy'
     minimize()
     preserveFileTimestamps = false
     assemble.dependsOn it
