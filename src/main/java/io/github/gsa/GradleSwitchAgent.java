@@ -1,4 +1,4 @@
-package io.github.fubiye.gradleswitch;
+package io.github.gsa;
 
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.asm.Advice;

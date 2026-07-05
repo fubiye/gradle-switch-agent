@@ -22,11 +22,11 @@ java {
 
 jar {
     manifest.attributes(
-            'Premain-Class': 'io.github.fubiye.gradleswitch.GradleSwitchAgent',
+            'Premain-Class': 'io.github.gsa.GradleSwitchAgent',
             'Can-Redefine-Classes': true,
             'Can-Retransform-Classes': true
     )
-    manifest.attributes('io.github.fubiye.gradleswitch',
+    manifest.attributes('io.github.gsa',
             'Specification-Title': 'Gradle Switch Agent',
             'Specification-Version': version ?: 'UNKNOWN',
             'Specification-Vendor': 'https://github.com/fubiye/gradle-switch-agent',
