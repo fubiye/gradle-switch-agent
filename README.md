@@ -1,5 +1,7 @@
 # gradle-switch-agent
 
+This project is based on [ddimtirov/gwo-agent](https://github.com/ddimtirov/gwo-agent).
+
 A Java agent that overrides or transforms Gradle Wrapper properties at runtime, allowing you to switch Gradle distribution URLs without modifying checked-out source files.
 
 ## Usage
