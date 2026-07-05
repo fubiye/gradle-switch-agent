@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id "com.gradleup.shadow" version "9.4.3"
+}
+
+group = 'io.github.fubiye'
+version = System.getenv('VERSION') ?: '1.0.0'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.bytebuddy:byte-buddy:1.14.18'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+    manifest.attributes(
+            'Premain-Class': 'io.github.fubiye.gradleswitch.GradleSwitchAgent',
+            'Can-Redefine-Classes': true,
+            'Can-Retransform-Classes': true
+    )
+    manifest.attributes('io.github.fubiye.gradleswitch',
+            'Specification-Title': 'Gradle Switch Agent',
+            'Specification-Version': version ?: 'UNKNOWN',
+            'Specification-Vendor': 'https://github.com/fubiye/gradle-switch-agent',
+            'Implementation-Title': "$project.group:$project.name",
+            'Implementation-Version': System.getenv('GIT_COMMIT') ?: 'UNKNOWN',
+            'Implementation-Vendor': System.getenv('JITPACK') ? 'https://jitpack.io' : 'UNKNOWN'
+    )
+    enabled = false
+}
+
+shadowJar {
+    archiveClassifier = null
+    relocate 'net.bytebuddy', 'relocated.gradleswitch.bytebuddy'
+    minimize()
+    preserveFileTimestamps = false
+    assemble.dependsOn it
+}
